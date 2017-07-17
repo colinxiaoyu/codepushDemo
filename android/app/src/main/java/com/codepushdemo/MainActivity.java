@@ -1,9 +1,6 @@
 package com.codepushdemo;
 
 import com.facebook.react.ReactActivity;
-import com.eguma.barcodescanner.BarcodeScanner;
-import com.lwansbrough.RCTCamera.RCTCameraPackage;
-import com.microsoft.codepush.react.CodePush;
 
 public class MainActivity extends ReactActivity {
 

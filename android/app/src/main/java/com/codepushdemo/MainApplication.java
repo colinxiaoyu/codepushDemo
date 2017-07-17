@@ -2,7 +2,6 @@ package com.codepushdemo;
 
 import android.app.Application;
 
-import com.eguma.barcodescanner.BarcodeScanner;
 import com.facebook.react.ReactApplication;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
@@ -31,8 +30,7 @@ public class MainApplication extends Application implements ReactApplication {
         protected List<ReactPackage> getPackages() {
             return Arrays.<ReactPackage>asList(
                     new MainReactPackage(),
-                    new CodePush("mPSXIUKqgjCSZ7oxVq4SRExVkZi171f76e94-2011-4f81-a856-8394b47369c3", MainApplication.this, BuildConfig.DEBUG),
-                    new BarcodeScanner()
+                    new CodePush("mPSXIUKqgjCSZ7oxVq4SRExVkZi171f76e94-2011-4f81-a856-8394b47369c3", MainApplication.this, BuildConfig.DEBUG)
             );
         }
     };

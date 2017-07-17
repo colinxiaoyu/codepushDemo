@@ -10,11 +10,15 @@ import {
     StyleSheet,
     Text,
     View,
-    Image
+    Image,
+    TouchableOpacity
 } from 'react-native';
 
 import PercentageCircle from 'react-native-percentage-circle'
 import CodePush from 'react-native-code-push';
+import Drawer from 'react-native-drawer';
+import ControlPanel from './app/controlPanel'
+
 let codePushOptions = {checkFrequency: CodePush.CheckFrequency.ON_APP_START};
 
 
@@ -51,33 +55,66 @@ class CodePushDemo extends Component {
         this.timer && clearInterval(this.timer);
     }
 
+    closeControlPanel = () => {
+        this._drawer.close()
+    };
+    openControlPanel = () => {
+        this._drawer.open()
+    };
+
+    _handleDrawer(){
+        console.log("_handleDrawer",this._drawer._open);
+        if(this._drawer._open){
+            this._drawer.close()
+        }else {
+            this._drawer.open()
+        }
+    }
+
     render() {
         return (
-            <View style={styles.container}>
-                <Image source={require("./image/huizhongdai_img_banner.png")}/>
-                <Text style={styles.welcome}>
-                    Welcome to React Native!
-                </Text>
-                <Text style={styles.instructions}>
-                    To get started, edit index.android.js
-                </Text>
-                <Text style={styles.instructions}>
-                    Double tap R on your keyboard to reload,{'\n'}
-                    Shake or press menu button for dev menu
-                </Text>
-                <PercentageCircle
-                    radius={35}
-                    percent={this.state.perent}
-                    color={"#ffb133"}/>
+            <Drawer
+                ref={(ref) => this._drawer = ref}
+                type="overlay"
+                content={<ControlPanel />}
+                tapToClose={true}
+                openDrawerOffset={0.2} // 20% gap on the right side of drawer
+                panCloseMask={0.2}
+                closedDrawerOffset={-3}
+                styles={drawerStyles}
+                tweenHandler={(ratio) => ({
+                    main: { opacity:(2-ratio)/2 }
+                })}
+            >
+                <View style={styles.container}>
+                    <Image source={require("./image/huizhongdai_img_banner.png")}/>
+                    <Text style={styles.welcome}>
+                        Welcome to React Native!
+                    </Text>
+                    <TouchableOpacity
+                        onPress={()=>this._handleDrawer()}>
+                        <Text style={styles.instructions}>
+                            打开键盘
+                        </Text>
+                    </TouchableOpacity>
+                    <Text style={styles.instructions}>
+                        Double tap R on your keyboard to reload,{'\n'}
+                        Shake or press menu button for dev menu
+                    </Text>
+                    <PercentageCircle
+                        radius={35}
+                        percent={this.state.perent}
+                        color={"#ffb133"}/>
 
-                <View style={[styles.circle, {
-                    width: 50,
-                    height: 50,
-                    borderRadius: 50
-                }]}>
-                    <Text style={styles.text}>{this.props.disabledText}</Text>
+                    <View style={[styles.circle, {
+                        width: 50,
+                        height: 50,
+                        borderRadius: 50
+                    }]}>
+                        <Text style={styles.text}>{this.props.disabledText}</Text>
+                    </View>
                 </View>
-            </View>
+            </Drawer>
         );
     }
 }
@@ -107,6 +144,12 @@ const styles = StyleSheet.create({
         backgroundColor: '#e3e3e3',
     },
 });
+
+const drawerStyles = {
+    drawer: { shadowColor: '#000000', shadowOpacity: 0.8, shadowRadius: 3},
+    main: {paddingLeft: 3},
+}
+
 export default CodePushDemo = CodePush(codePushOptions)(CodePushDemo)
 
 AppRegistry.registerComponent('CodePushDemo', () => CodePushDemo);

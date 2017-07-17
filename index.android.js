@@ -18,6 +18,7 @@ import PercentageCircle from 'react-native-percentage-circle'
 import CodePush from 'react-native-code-push';
 import Drawer from 'react-native-drawer';
 import ControlPanel from './app/controlPanel'
+import TouchDrawer from './app/touchDrawer';
 
 let codePushOptions = {checkFrequency: CodePush.CheckFrequency.ON_APP_START};
 
@@ -91,12 +92,9 @@ class CodePushDemo extends Component {
                     <Text style={styles.welcome}>
                         Welcome to React Native!
                     </Text>
-                    <TouchableOpacity
-                        onPress={()=>this._handleDrawer()}>
-                        <Text style={styles.instructions}>
-                            打开键盘
-                        </Text>
-                    </TouchableOpacity>
+
+                    <TouchDrawer
+                        onPress={()=>this._handleDrawer()}/>
                     <Text style={styles.instructions}>
                         Double tap R on your keyboard to reload,{'\n'}
                         Shake or press menu button for dev menu

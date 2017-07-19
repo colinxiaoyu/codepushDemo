@@ -8,6 +8,7 @@ import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
 import com.microsoft.codepush.react.CodePush;
+import com.rnfs.RNFSPackage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -30,8 +31,8 @@ public class MainApplication extends Application implements ReactApplication {
         protected List<ReactPackage> getPackages() {
             return Arrays.<ReactPackage>asList(
                     new MainReactPackage(),
-                    new CodePush("mPSXIUKqgjCSZ7oxVq4SRExVkZi171f76e94-2011-4f81-a856-8394b47369c3", MainApplication.this, BuildConfig.DEBUG)
-            );
+                    new CodePush("mPSXIUKqgjCSZ7oxVq4SRExVkZi171f76e94-2011-4f81-a856-8394b47369c3", MainApplication.this, BuildConfig.DEBUG),
+                    new RNFSPackage());
         }
     };
 

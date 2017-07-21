@@ -2,8 +2,9 @@
  * Created by Colin on 2017/7/17.
  */
 import React from 'react';
-import {View, Text,TouchableOpacity,StyleSheet,ProgressBarAndroid} from 'react-native';
-import RNFS from 'react-native-fs'
+import {View, Text,TouchableOpacity,StyleSheet,ProgressBarAndroid,Dimensions} from 'react-native';
+import RNFS from 'react-native-fs';
+const {width}= Dimensions.get('window');
 
 class DownloadProgress extends React.Component {
     constructor(props){

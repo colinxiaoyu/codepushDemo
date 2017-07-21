@@ -16,13 +16,13 @@ import {
     Dimensions
 } from 'react-native';
 
-import PercentageCircle from 'react-native-percentage-circle'
 import CodePush from 'react-native-code-push';
 import Drawer from 'react-native-drawer';
 import ControlPanel from './app/controlPanel';
 import TouchDrawer from './app/touchDrawer';
 import DownloadProgress from './app/downloadProgress';
 import SwiperComponent from './app/swiperComponent';
+import PercentageCircleComponent from './app/PercentageCircleComponent'
 
 const {width,heiht} = Dimensions.get('window');
 
@@ -33,21 +33,11 @@ class CodePushDemo extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            perent: 0,
-            progress:0,
             drawerState:false
         }
     }
 
     componentDidMount() {
-        this.timer = setInterval(() => {
-            let now = this.state.perent;
-            let persent = now + 1;
-            this.setState({
-                perent: persent
-            })
-        }, 1000);
-
         CodePush.sync({
             updateDialog: {
                 mandatoryContinueButtonLabel: "立即更新",
@@ -58,10 +48,6 @@ class CodePushDemo extends Component {
             deploymentKey: 'ewGHxhsOdSCJENY5mXrkeR5scC4G71f76e94-2011-4f81-a856-8394b47369c3',
         });
 
-    }
-
-    componentWillUnmount() {
-        this.timer && clearInterval(this.timer);
     }
 
     closeControlPanel = () => {
@@ -124,10 +110,7 @@ class CodePushDemo extends Component {
                         Double tap R on your keyboard to reload,{'\n'}
                         Shake or press menu button for dev menu
                     </Text>
-                    <PercentageCircle
-                        radius={35}
-                        percent={this.state.perent}
-                        color={"#ffb133"}/>
+                    <PercentageCircleComponent/>
 
                     <View style={[styles.circle, {
                         width: 50,
@@ -158,14 +141,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         color: '#333333',
         marginBottom: 5,
-    },
-    circle: {
-        overflow: 'hidden',
-        position: 'relative',
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#e3e3e3',
-    },
+    }
 });
 
 const drawerStyles = {

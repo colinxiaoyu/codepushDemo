@@ -3,8 +3,9 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node node_modules/react-native/local-cli/cli.js start",
-    "test": "jest"
+    "start": "node_modules/react-native/packager/packager.sh",
+    "ios": "node ./node_modules/react-native/local-cli/cli.js bundle --entry-file=index.ios.js --platform=ios --dev=false --minify=true --bundle-output=./ios/main.jsbundle",
+    "android": "node ./node_modules/react-native/local-cli/cli.js bundle --entry-file=index.android.js --platform=android --dev=false --minify=true --bundle-output=./android/app/src/main/assets/index.android.bundle --assets-dest=android/app/src/main/res/"
   },
   "dependencies": {
     "react": "16.0.0-alpha.12",
@@ -12,7 +13,8 @@
     "react-native-code-push": "^4.0.0-beta",
     "react-native-drawer": "^2.3.0",
     "react-native-fs": "^2.3.3",
-    "react-native-percentage-circle": "^1.0.6"
+    "react-native-percentage-circle": "^1.0.6",
+    "react-native-swiper": "^1.5.4"
   },
   "devDependencies": {
     "babel-jest": "20.0.3",
